@@ -1,0 +1,23 @@
+
+MainRunFile.m--- Main run file.  
+preprocess_networks_func--- Take input as network dataset, compute query set Q
+SampleGraph_func--- Take graph as input ansd sample 85\% nbr and non-nighbor for each query in Q
+ComputeScoresNonDeep_func-- Compute s_A(u,v) for triad based LP algo, like 'CN','AA','JC','CRW'.
+ComputeScoresDeep_func-- Compute s_A(u,v) for triad based LP algo, like 'nodetovec','structtovec','PRUNE','line'.
+DpAllTriad_func--- For ('CN','AA','JC','CRW'), Execute all DP algorithms (DPLP, Lapl., Gauss., and Exp. and store MAP values with statistics)
+DpAllDeep_func--- For ('nodetovec','structtovec','PRUNE','line'), Execute all DP algorithms (DPLP, Lapl., Gauss., and Exp. and store MAP values with statistics)
+
+CreatePrivacyVsMAP--- stores all results. Run this file_ONLY_AFTER_ALL_REULTS else can show error. This  
+GenerateTable-- generate table 1
+plotFigure1_func--Plot Figure 1: MAP vs PRIVACY for all datasets for triad based LPs.
+plotFigure2_func--Plot Figure 2: MAP vs PRIVACY for all baselines for Yeast across all LPs. 
+
+ComputeAcc--functions for AUC and MAP, we only compute MAP
+laplace_rand--laplace random number generation.
+
+realRaw folder contains Raw data.
+real folder contains processed data.
+
+We have included final processed data in real folder 
+
+mex files are liblinear files.
