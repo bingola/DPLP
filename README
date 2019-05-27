@@ -1,7 +1,7 @@
 
 MainRunFile.m--- Main run file.  
 preprocess_networks_func--- Take input as network dataset, compute query set Q
-SampleGraph_func--- Take graph as input ansd sample 85\% nbr and non-nighbor for each query in Q
+SampleGraph_func--- Take graph as input ansd sample 85\% nbr and non-neighbor for each query in Q
 ComputeScoresNonDeep_func-- Compute s_A(u,v) for triad based LP algo, like 'CN','AA','JC','CRW'.
 ComputeScoresDeep_func-- Compute s_A(u,v) for triad based LP algo, like 'nodetovec','structtovec','PRUNE','line'.
 DpAllTriad_func--- For ('CN','AA','JC','CRW'), Execute all DP algorithms (DPLP, Lapl., Gauss., and Exp. and store MAP values with statistics)
