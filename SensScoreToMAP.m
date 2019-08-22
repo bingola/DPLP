@@ -50,7 +50,7 @@ function[]=SensScoreToMAP(network_dataset,Metric,K,f,perturbFrac)
             LL=GoldLabel{l}(s>0);
             s=s(s>0);
             good=0;
-            clear trueLabel recDPLR
+            clear trueLabel
             sx=s;
             KEffective=min(length(PotEdge)-1,K);
             Dummy=zeros(KEffective,1);            
