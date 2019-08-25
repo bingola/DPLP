@@ -1,8 +1,8 @@
 
-function[]=SampleGraph_funcForSensitivtyCheck(f,perturbFrac,network_dataset)
+function[]=SampleGraph_funcForSensitivtyCheck(f,perturbFrac,instance,network_dataset)
 %     network_dataset=netV{i};
     datapath=configFile(1);
-    Fname=strcat(datapath,network_dataset,'_Perturbed_', num2str(perturbFrac)); 
+    Fname=strcat(datapath,network_dataset,'_Perturbed_', num2str(perturbFrac), '_Instance_',num2str(instance)); 
     load(Fname);
     
     A=graphData.adj_mat;
@@ -34,7 +34,7 @@ function[]=SampleGraph_funcForSensitivtyCheck(f,perturbFrac,network_dataset)
     
     
     datapath=configFile(1);
-    Fname=strcat(datapath,network_dataset,'_sampled', num2str(f),'_Perturbed_', num2str(perturbFrac)); 
+    Fname=strcat(datapath,network_dataset,'_sampled', num2str(f),'_Perturbed_', num2str(perturbFrac), '_Instance_',num2str(instance)); 
     eval(['save -v7.3 ',Fname,' graphSampled']);
     
 end

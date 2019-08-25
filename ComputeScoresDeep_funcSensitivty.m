@@ -3,7 +3,8 @@ function[]=ComputeScoresDeep_funcSensitivty(f,perturbFrac,network_dataset)
 
     DIM=5;
     datapath=configFile(1);
-    Fname=strcat(datapath,network_dataset,'_sampled', num2str(f),'_Perturbed_', num2str(perturbFrac)); 
+    Fname=strcat(datapath,network_dataset,'_sampled', ...
+        num2str(f),'_Perturbed_', num2str(perturbFrac), '_Instance_',num2str(instance)); 
     load(Fname)
         
     A=graphSampled.adj_mat;
@@ -30,7 +31,7 @@ function[]=ComputeScoresDeep_funcSensitivty(f,perturbFrac,network_dataset)
 
     for MM=MetricV
             Metric=MM{1};
-            TT=strcat('EmbeddingFileSensitivity/',network_dataset,Metric,'__Embedding15','_Perturbed_',num2str(perturbFrac),'.txt'); 
+            TT=strcat('EmbeddingFileSensitivity/',network_dataset,Metric,'_Embedding15','_Perturbed_',num2str(perturbFrac), '_Instance_',num2str(instance),'.txt'); 
             embed=dlmread(TT);
             embedx=zeros(graphSampled.N,DIM);
             if (strcmp(Metric,'nodetovec'))|| (strcmp(Metric,'structtovec')) || (strcmp(Metric,'line'))
@@ -90,7 +91,7 @@ function[]=ComputeScoresDeep_funcSensitivty(f,perturbFrac,network_dataset)
     graphWithScoreNonDP.GoldListX=PotEdgeV;
     graphWithScoreNonDP.GoldLabelX=GoldLabel;
     datapath=configFile(1);
-    Fname=strcat(datapath,network_dataset,'_WithScoreNonDP_Deep', num2str(f),'_Perturbed_', num2str(perturbFrac)); 
+    Fname=strcat(datapath,network_dataset,'_WithScoreNonDP_Deep', num2str(f),'_Perturbed_', num2str(perturbFrac), '_Instance_',num2str(instance)); 
     eval(['save -v7.3 ',Fname,' graphWithScoreNonDP']);
 end
  

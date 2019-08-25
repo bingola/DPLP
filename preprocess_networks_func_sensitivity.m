@@ -1,4 +1,4 @@
-function[]=preprocess_networks_func_sensitivity(network_dataset,perturbFrac)
+function[]=preprocess_networks_func_sensitivity(network_dataset,perturbFrac,instance)
    %%%%%%%%%%%%%%generate networks%%%%%%%%%%%%%%%
     datapath=configFile(0);
     netdata=strcat(datapath,network_dataset);
@@ -34,9 +34,10 @@ function[]=preprocess_networks_func_sensitivity(network_dataset,perturbFrac)
     graphData.N=N;
     graphData.qlist=qlist;
     graphData.edgeNonedgelist=listOfEdgeNonEdge;
-    Fname=strcat(outpath,network_dataset,'_Perturbed_', num2str(perturbFrac)); 
+    Fname=strcat(outpath,network_dataset,'_Perturbed_', num2str(perturbFrac),...
+        '_Instance_',num2str(instance)); 
 
- 
+ %
    eval(['save -v7.3 ',Fname,' graphData']);
     
 

@@ -9,14 +9,18 @@ for i=4
     
     clearvars -except f netV i MetricV 
     for perturbFrac=5:5:45
-    network_dataset=netV{i};
-    datapath=configFile(1);
-    Fname=strcat(datapath,network_dataset,'_sampled', num2str(f),'_Perturbed_', num2str(perturbFrac)); 
+            for instance=1:5
+                network_dataset=netV{i};
+                datapath=configFile(1);
+             Fname=strcat(datapath,network_dataset,'_sampled', num2str(f),'_Perturbed_', num2str(perturbFrac), '_Instance_',num2str(instance)); 
 
-    load(Fname);
-    TxtName=strcat('EdgelistForDeepEmbedding/',network_dataset,'_EdgeListX', num2str(f),'_Perturbed_', num2str(perturbFrac),'.txt'); 
-    As=graphSampled.Asample;
-    [~,E]=Adj2Edg(As);
-    dlmwrite(TxtName,E,'Delimiter','\t')
+                load(Fname);
+                As=graphSampled.Asample;
+                [E,Ex]=Adj2Edg(As);
+                TxtName=strcat('EdgelistForDeepEmbedding/',network_dataset,'_EdgeList', num2str(f),'_Perturbed_', num2str(perturbFrac), '_Instance_',num2str(instance),'.txt'); 
+                dlmwrite(TxtName,E,'Delimiter','\t');
+                TxtName=strcat('EdgelistForDeepEmbedding/',network_dataset,'_EdgeListX', num2str(f),'_Perturbed_', num2str(perturbFrac),  '_Instance_',num2str(instance),'.txt'); 
+                dlmwrite(TxtName,Ex,'Delimiter','\t');
+            end
     end
 end

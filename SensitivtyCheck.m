@@ -1,6 +1,6 @@
 % MainFile
 clc
-clear
+clear all
 %Tested on MATLAB2017b
 %{'nodetovec','structtovec','PRUNE','line'} are the Deep Embedding based LP
 %{'CN','AA','JC','CRW'} are Triad Based LPs;
@@ -17,9 +17,13 @@ frac=85;
 f=100-frac;
 %SampleGraph_func(f,network_dataset); 
 
-% for perturbFrac=[5 10 15 20 25 30 35 40 45]
-%   SampleGraph_funcForSensitivtyCheck(f,perturbFrac,network_dataset)
-% end
+ for perturbFrac=[5 10 15 20 25 30 35 40 45]
+ for instance=1:5
+%    preprocess_networks_func_sensitivity(network_dataset,perturbFrac,instance)
+%    SampleGraph_funcForSensitivtyCheck(f,perturbFrac,instance,network_dataset)
+%   ComputeScoresNonDeep_funcForSensitivityCheck(f,perturbFrac,instance,network_dataset)
+ end
+end
 %%
 
 
@@ -33,9 +37,66 @@ f=100-frac;
 % end
 
 
-for perturbFrac=[5 10 15 20 25 30 35 40 45]
-ComputeScoresDeep_funcSensitivty(f,perturbFrac,network_dataset);
-end
+% for perturbFrac=[5 10 15 20 25 30 35 40 45]
+% ComputeScoresDeep_funcSensitivty(f,perturbFrac,network_dataset);
+% end
+
+% % 
+% K=10;
+% Metric={'CN','AA','JC'};
+% p=0;
+% for perturbFrac=[5 10 15 20 25 30 35 40 45]
+%     p=p+1;
+%     l=0;
+% for metric=Metric 
+%     l=l+1;
+%  result=NonDeepMAPForSensitivity(network_dataset,metric{1},K,f,perturbFrac);
+%  nmapv(l,p)=result.map;
+% end
+% end
+% 
+% Metric={'nodetovec','structtovec','PRUNE'};
+% p=0;
+% for perturbFrac=[5 10 15 20 25 30 35 40 45]
+%     p=p+1;
+%     l=0;
+% for metric=Metric    
+%     l=l+1;
+%  result=DeepMAPForSensitivity(network_dataset,metric{1},K,f,perturbFrac);
+%  mapv(l,p)=result.map;
+% end
+% end
+
+% load nmapv
+% load mapv
+%%
+% nn=nmapv';
+% dd=mapv';
+% 
+% % dds=dd-repmat(dd(1,:),[9,3]);
+% % nns=nn-[nn(1,:);nn(1:end-1,:)];
+% 
+% for i=1:3
+% 
+% 
+% 
+% dd(:,i)=(dd(:,i)-[dd(1,i);dd(1:end-1,i)]);
+% nn(:,i)=(nn(:,i)-[nn(1,i);nn(1:end-1,i)]);
+% 
+% dd(:,i)=movmean(dd(:,i),5);
+% nn(:,i)=movmean(nn(:,i),5);
+% 
+% end
+% close all
+% plot(abs(dd));
+% figure;
+% plot(abs(nn));
+% close all
+% plot(dd(1:2:9,:))
+% figure
+% plot(nn(1:2:9,:))
+
+
 %%%%%Compute NON-DP Score from NonDeep/Triad-Based Heuristics {'nodetovec','structtovec','PRUNE','line'}
 %%%% Takes embeddings stored in EmbeddingFile/ . These files are output of
 %%%% different Graph embedding technqiues that are already available in github

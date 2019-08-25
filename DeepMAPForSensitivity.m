@@ -1,4 +1,4 @@
-function[]=DeepMAPForSensitivity(network_dataset,Metric,K,f,perturbFrac)
+function[result]=DeepMAPForSensitivity(network_dataset,Metric,K,f,perturbFrac)
        netV={'USAir','Celegans','Ecoli','Yeast','facebook','Power', 'NS','PB'};
         i=  strcmp(netV,network_dataset);
         MetricV={'nodetovec','structtovec','PRUNE'};
@@ -33,9 +33,7 @@ function[]=DeepMAPForSensitivity(network_dataset,Metric,K,f,perturbFrac)
         Xval=XXV{i}{MI};
         eval(['score=Score.Score',Xval,'.',Metric,';']);
  
-        
- 
- 
+  
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%Laplacian%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -58,10 +56,10 @@ function[]=DeepMAPForSensitivity(network_dataset,Metric,K,f,perturbFrac)
             trueLabel=LL(sampVec);
             trueLabel=trueLabel(1:KEffective);
 
-            if sum(trueLabel)>ths
+%             if sum(trueLabel)>ths
               upd=upd+1;   
-              AvgPr(upd)=ComputeAcc('AvePrecision', trueLabel,KEffective);
-            end
+              Avgpr(upd)=ComputeAcc('AvePrecision', trueLabel,KEffective);
+%             end
 
         end
 
